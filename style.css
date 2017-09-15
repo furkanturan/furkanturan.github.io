@@ -61,19 +61,21 @@ html, body {
 .line{
 	position: relative;
 	left: 00px;
-	width: 90%;
+	width: 50%;
   	/*max-width: 900px;*/
 	text-align: left;
 	font-family: Delicious, sans-serif; 
 	font-size:80px; 
-	display: block;
-	margin-left:5%;
+  display: block;
+  
+  margin:0 auto;
+	/* margin-left:5%; */
 
 	margin-top:30px;
 	margin-bottom:10px;
-	height:2px;
+	height:4px;
 
-	background-color: #ccc;
+	background-color: #E7E7E7;
 
 	border-radius: 25px;
   }
@@ -101,9 +103,10 @@ html, body {
   width: 64px;
   height: 64px;
   display: block;
-  margin-left:10%;
+  margin:0 auto;
+  /* margin-left:10%; */
   margin-top:30px;
-  float:left;
+  /* float:left; */
   }
 
 #toggle {
