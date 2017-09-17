@@ -77,7 +77,7 @@ html, body {
 	/* -moz-animation: animateCloud 5s linear infinite; */
 	animation: ColorChange 5s linear infinite;
 }
-
+/* 
   @media screen and (-webkit-min-device-pixel-ratio:0) {  
     .name{
       background: url(bcg.jpg) repeat-y;
@@ -85,7 +85,7 @@ html, body {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       -webkit-animation: BackgroundSlide 5s linear infinite;
-    }
+    } */
 
 .line{
 	position: relative;
