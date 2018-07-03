@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"/> -->
 	<title>FT's Ear Trainer</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="abcjs-midi.css">
@@ -146,6 +146,33 @@
 			return str;
 		}
 
+		function flip_vertical()
+		{
+			var new_notes = [num_notes_total];
+
+			var i;
+
+			for(i=0; i<num_notes_total; i++)
+			{
+				new_notes[i] = notes[num_notes_total-i-1];
+			}
+			
+			notes = new_notes;
+		}
+
+		function flip_horizontal()
+		{
+			var i;
+
+			var old_first = notes[0];
+
+			for(i=0; i<num_notes_total; i++)
+			{
+				notes[i] = highest_note - notes[i];
+			}
+		}
+
+
 		var rhythm = 0;
 		var num_bars = 0;
 
@@ -211,17 +238,24 @@
 				while (half_note_exist() == 1);
 			}
 
+			// Randomly Flip Notes Vertical 
+			if(Math.floor(Math.random() * 2) == 1)
+				flip_vertical();
+
+			// Randomly Flip Notes Horizontal 
+			if(Math.floor(Math.random() * 2) == 1)
+				flip_horizontal();
+
 			note_string = notes_to_string();
 
 			abc = 
-				"Q: \"larghissimo\" \n" +
 				"M: " + rhythm + "/" + num_bars + "\n" +
 				"K: " + scales[scale] + "\n" +
-				notes_to_string(notes, num_bars);
+				note_string;
 			
-			document.getElementById("title").innerHTML = "First Note: " + note_names[start_note];
+			document.getElementById("title").innerHTML = "First Note: " + note_names[start_note+notes[0]];
 				
-			ABCJS.renderMidi("midi", abc);
+			ABCJS.renderMidi("midi", abc, {qpm: 34});
 			ABCJS.renderAbc("notes", "");
 			
 		}
