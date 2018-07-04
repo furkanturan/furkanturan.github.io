@@ -274,12 +274,14 @@
 			ABCJS.renderMidi("midi", abc, {qpm: 34});
 			ABCJS.renderAbc("notes", "");
 			document.getElementById("notes").style.display = "none";	
+			document.getElementById("showA").style.display = "block";
 		}
 
 		function showans()
 		{
 			ABCJS.renderAbc("notes", abc);
 			document.getElementById("notes").style.display = "block";
+			document.getElementById("showA").style.display = "none";
 		}
 		
 	
@@ -322,13 +324,13 @@
 			</div>
 		</div>
 
-		<button type="button" class="control" onclick="get_question()">
+		<button id="nextQ" type="button" class="control" onclick="get_question()">
 			Next Question
 		</button>
 
 		<div id="notes"></div>
 	
-		<button  type="button" class="control" onclick="showans()">
+		<button id="showA" type="button" class="control" onclick="showans()">
 			Show Answer
 		</button>
 
