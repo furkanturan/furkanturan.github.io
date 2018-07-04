@@ -64,6 +64,21 @@
 			 "La" , 
 			 "Si" ];
 
+		var scale_names = [
+			"Do Major",
+			"Sol Major",
+			"Re Major",
+			"La Major",
+			"Mi Major",
+			"Si Major",
+			"Sol Flat Major - Fa Sharp Major",
+			"Re Flat Major - Do Sharp Major",
+			"La Flat Major",
+			"Mi Flat Major",
+			"Si Flat Major",
+			"Fa Major"];
+
+
 		function get_half_notes()
 		{
 			var halves = [0, 0];
@@ -253,7 +268,8 @@
 				"K: " + scales[scale] + "\n" +
 				note_string;
 			
-			document.getElementById("title").innerHTML = "First Note: " + note_names[start_note+notes[0]];
+			document.getElementById("title").innerHTML = "First Note: " + note_names[start_note+notes[0]] + "<br>" +
+														 "Scale: " + scale_names[scale];
 				
 			ABCJS.renderMidi("midi", abc, {qpm: 34});
 			ABCJS.renderAbc("notes", "");
