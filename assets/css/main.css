@@ -514,3 +514,7 @@ body {
 					margin-left: 0;
 					padding: 0;
 				}
+
+@media screen and (max-width: 900px) {
+	h1 {font-size: 1.3em;}
+}
