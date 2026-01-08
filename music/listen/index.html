@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="List of songs Furkan Turan plays" />
+  <meta name="keywords" content="sheet music, violin practice" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Listen</title>
+
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,900,700,600,200' />
+  <link rel="stylesheet" type="text/css" href="./js/abcjs-audio.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+  <script src="./js/abcjs-basic-min.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+</head>
+
+<body onload="load()">
+
+<div class="wrapper typo">
+
+  <div id="outer">
+    <div id="inner">
+      <main>
+        <div id="sheetSelection">
+          <div class="list">
+              <span id="sheetSelect" class="placeholder">select</span>
+              <ul id="sheetList" class="list__ul">
+                <li><a href="">select</a></li>
+              </ul>
+            </div>
+          at
+            <div class="list">
+              <span id="qpmSelect" class="placeholder">bpm</span>
+              <ul id="qpmList" class="list__ul">
+                <li><a href="">60</a></li>
+                <li><a href="">120</a></li>
+              </ul>
+            </div>
+          qpm
+        </div>
+
+        <div id="synth">
+          <div id="audio"></div>
+          <div id="paper"></div>
+        </div>
+
+        <div id="options">
+          <input type="checkbox" id="beatBlink" name="beatBlink" value="beatEn">
+          <label for="beatBlink">Enable Beat Blinker</label><br>
+          <input type="checkbox" id="beatDiv" name="beatDiv" value="beatDivision">
+          <label for="beatDiv">Enable Eight Note Beats</label><br><br>
+          <a id="downlink" href="" alt="Download this sheet">Download PDF</a>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script src="js/songs.js"         type="text/javascript"></script>
+<script src="js/synth.js"         type="text/javascript"></script>
+<script src="js/customselect.js"  type="text/javascript"></script>
+<script src="js/download.js"      type="text/javascript"></script>
+<script src="js/load.js"          type="text/javascript"></script>
+
+</body>
+</html>
