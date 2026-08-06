@@ -119,6 +119,10 @@ p {
   padding-left: 5ch;
 }
 
+.ni {
+  padding-left: 3ch;
+}
+
 .lg li::before {
   color: #bcbcbccc;
 }
