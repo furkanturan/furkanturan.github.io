@@ -192,13 +192,12 @@ footer {
 .social-links a.notLast::after {
   content: " /";
   text-decoration: none;
-  color: #fff;
+  color: #bcbcbc77;
 }
 
 .progress {
   color: #7a7a7a;
   display: inline-block;
-
 }
 
 .progress::after {
@@ -248,7 +247,7 @@ footer {
   .social-links a::before {
     content: "- ";
     text-decoration: none;
-    color: #fff;
+    color: #bcbcbc77;
   }
 
   .social-links a.notLast::after {
