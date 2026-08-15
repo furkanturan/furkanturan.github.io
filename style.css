@@ -114,17 +114,29 @@ p {
   color: #ffffffe9;
 }
 
-.lg {
-  color: #bcbcbccc;
+.gr {
+  color: #bcbcbcbb;
   padding-left: 5ch;
+  padding-right: 3ch;
+}
+
+.lg {
+  color: #bcbcbc77;
+  padding-left: 5ch;
+  padding-right: 3ch;
 }
 
 .ni {
   padding-left: 3ch;
+  padding-right: 3ch;
 }
 
 .lg li::before {
-  color: #bcbcbccc;
+  color: #bcbcbc77;
+}
+
+.ch-at, .ch-sl, .ch-am {
+  color: #bcbcbc77;
 }
 
 .divider {
@@ -220,7 +232,7 @@ footer {
 @media (max-width: 600px) {
 
   body {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 
   .social-links {
