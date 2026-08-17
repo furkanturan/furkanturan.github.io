@@ -154,6 +154,7 @@ footer {
   margin-top: 1em;
   font-size: 1em;
   color: #888;
+  padding: 0 3ch;
 }
 
 @keyframes pulseSquare {
