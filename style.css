@@ -16,6 +16,7 @@ body {
 main {
   max-width: 80ch;
   width: 100%;
+  padding-top: var(--hero-offset, 0px);
 }
 
 a {
