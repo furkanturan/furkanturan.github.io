@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
 
+:root {
+  --matrix-cycle: 1200ms;
+  --matrix-base: #843500;
+  --matrix-active: #FF5B04;
+  --matrix-ease: ease-in-out;
+}
+
 body {
   background-color: #16232A;
   color: #E4EEF0;
@@ -62,16 +69,34 @@ h2 {
   padding-bottom: 1em;
 }
 
-.square {
-  display: inline-block;
-  width: 2ch;
-  height: 1em;
-  background-color: #ffffff95;
-  border-radius: 2px;
+/* Matrix dot loader — a 4x4 grid of dots that pulse through the accent
+   colour on a per-dot delay. The delay table is set by JS from data-variant. */
+.t-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 3px);
+  grid-auto-rows: 3px;
+  gap: 2px;
+  /* Sit a touch above and left of the heading text's optical centre. */
+  transform: translate(-4px, -1px);
 }
 
-.animated {
-  animation: pulseSquare 2s infinite;
+.t-matrix i {
+  display: block;
+  background-color: var(--matrix-base);
+  animation: matrixPulse var(--matrix-cycle) var(--matrix-ease) infinite;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+/* Dots outside a variant's moving set stay at the base colour. */
+.t-matrix i.is-hold {
+  animation: none;
+}
+
+/* The static variant never moves and takes its colour from the heading,
+   faded back so it reads quieter than the heading text. */
+.t-matrix[data-variant="static"] i {
+  background-color: currentColor;
+  opacity: 0.6;
 }
 
 p,
@@ -158,23 +183,23 @@ footer {
   padding: 0 3ch;
 }
 
-@keyframes pulseSquare {
-  0% {
-    background-color: #FF5B04;
-  }
+@keyframes matrixPulse {
 
-  70% {
-    background-color: #843500;
-  }
-
-  90% {
-    background-color: #FF5B04;
-  }
-
+  0%,
+  45%,
   100% {
-    background-color: #FF5B04;
+    background-color: var(--matrix-base);
   }
 
+  15% {
+    background-color: var(--matrix-active);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-matrix i {
+    animation: none !important;
+  }
 }
 
 .multiLine {

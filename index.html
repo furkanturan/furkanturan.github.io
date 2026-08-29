@@ -16,7 +16,7 @@
     <div class="hero">
 
       <h1>
-        <span class="square animated"></span>
+        <span class="t-matrix" data-variant="pulse"></span>
         Furkan Turan
       </h1>
 
@@ -56,7 +56,7 @@
 
       <section>
         <h2>
-          <span class="square"></span>
+          <span class="t-matrix" data-variant="static"></span>
           Work Experience
         </h2>
 
@@ -125,7 +125,7 @@
 
       <section>
         <h2>
-          <span class="square"></span>
+          <span class="t-matrix" data-variant="static"></span>
           Education
         </h2>
 
@@ -182,6 +182,53 @@
   <script>
     // Center the hero content in the first screen without reserving a full
     // viewport of space, so the rest follows immediately below it.
+    // Fill each matrix loader with sixteen dots, handing every dot a delay
+    // into the shared colour-pulse cycle. The variant is just a delay table:
+    // scan sweeps column by column, twinkle scatters, orbit walks the ring
+    // around a steady centre, pulse lights the centre before the border,
+    // and static holds every dot at rest.
+    (function () {
+      function delays(variant, cycle) {
+        var d = [], i;
+
+        if (variant === 'static') {
+          for (i = 0; i < 16; i++) d[i] = null;
+        } else if (variant === 'twinkle') {
+          var order = [7, 2, 11, 5, 14, 9, 0, 12, 3, 15, 6, 10, 13, 1, 8, 4];
+          for (i = 0; i < 16; i++) d[order[i]] = i * cycle / 16;
+        } else if (variant === 'orbit') {
+          var ring = [1, 2, 7, 11, 14, 13, 8, 4];
+          for (i = 0; i < 16; i++) d[i] = null;
+          for (i = 0; i < ring.length; i++) d[ring[i]] = i * cycle / 8;
+        } else if (variant === 'pulse') {
+          for (i = 0; i < 16; i++) {
+            var inner = i === 5 || i === 6 || i === 9 || i === 10;
+            d[i] = inner ? 0 : cycle * 0.16;
+          }
+        } else {
+          for (i = 0; i < 16; i++) d[i] = (i % 4) * cycle / 10;
+        }
+
+        return d;
+      }
+
+      var loaders = document.querySelectorAll('.t-matrix');
+
+      for (var n = 0; n < loaders.length; n++) {
+        var el = loaders[n];
+        var cycle = parseFloat(
+          getComputedStyle(el).getPropertyValue('--matrix-cycle')) || 1200;
+        var table = delays(el.dataset.variant, cycle);
+
+        for (var i = 0; i < 16; i++) {
+          var dot = document.createElement('i');
+          if (table[i] === null) dot.className = 'is-hold';
+          else dot.style.setProperty('--d', String(table[i]));
+          el.appendChild(dot);
+        }
+      }
+    })();
+
     (function () {
       var hero = document.querySelector('.hero');
 
