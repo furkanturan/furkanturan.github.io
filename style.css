@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
 
-:root {
-  --matrix-cycle: 1200ms;
-  --matrix-base: #843500;
-  --matrix-active: #FF5B04;
-  --matrix-ease: ease-in-out;
-}
-
 body {
   background-color: #16232A;
   color: #E4EEF0;
@@ -40,78 +33,30 @@ a:hover {
   color: #ffffff;
 }
 
-header {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  justify-content: flex-end;
-  margin-bottom: 1em;
-}
-
 h1,
 h2 {
   font-size: 1em;
   font-weight: bold;
   margin: 1em 0 0.5em 0;
   text-indent: 0;
-  display: flex;
-  align-items: center;
-  gap: 1ch;
 }
 
 h1 {
   color: #FF5B04;
+  margin-top: 2em ;
   padding-bottom: 1em;
 }
 
 h2 {
   color: #E4EEF0;
-  padding-bottom: 1em;
-}
-
-/* Matrix dot loader — a 4x4 grid of dots that pulse through the accent
-   colour on a per-dot delay. The delay table is set by JS from data-variant. */
-.t-matrix {
-  display: grid;
-  grid-template-columns: repeat(4, 3px);
-  grid-auto-rows: 3px;
-  gap: 2px;
-  /* Sit a touch above and left of the heading text's optical centre. */
-  transform: translate(-4px, -1px);
-}
-
-.t-matrix i {
-  display: block;
-  background-color: var(--matrix-base);
-  animation: matrixPulse var(--matrix-cycle) var(--matrix-ease) infinite;
-  animation-delay: calc(var(--d, 0) * 1ms);
-}
-
-/* Dots outside a variant's moving set stay at the base colour. */
-.t-matrix i.is-hold {
-  animation: none;
-}
-
-/* The static variant never moves and takes its colour from the heading,
-   faded back so it reads quieter than the heading text. */
-.t-matrix[data-variant="static"] i {
-  background-color: currentColor;
-  opacity: 0.6;
-}
-
-p,
-ul,
-ol,
-.divider,
-footer,
-header {
-  padding-left: 3ch;
+  margin: 0.75em 0 0.5em 0;
+  padding-bottom: 2.5em;
 }
 
 ul {
   list-style: none;
   margin: 1em 0;
-  padding-left: 3ch;
+  /* padding-left: 3ch; */
   text-indent: 0;
 }
 
@@ -132,28 +77,24 @@ p {
   margin: 1em 0;
 }
 
-.accent {
-  color: #FF5B04C0;
-}
-
 .wh {
   color: #ffffffe9;
 }
 
 .gr {
   color: #bcbcbcbb;
-  padding-left: 5ch;
+  /* padding-left: 2ch; */
   padding-right: 3ch;
 }
 
 .lg {
   color: #bcbcbc77;
-  padding-left: 5ch;
+  padding-left: 2ch;
   padding-right: 3ch;
 }
 
 .ni {
-  padding-left: 3ch;
+  /* padding-left: 3ch; */
   padding-right: 3ch;
 }
 
@@ -167,7 +108,7 @@ p {
 
 .divider {
   border-top: 1px solid #555;
-  margin: 3em 0;
+  margin: 5em 0 0 0;
 }
 
 .spacer {
@@ -183,25 +124,6 @@ footer {
   padding: 0 3ch;
 }
 
-@keyframes matrixPulse {
-
-  0%,
-  45%,
-  100% {
-    background-color: var(--matrix-base);
-  }
-
-  15% {
-    background-color: var(--matrix-active);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .t-matrix i {
-    animation: none !important;
-  }
-}
-
 .multiLine {
   color: #ffffffe9;
   max-width: 80ch;
@@ -210,6 +132,15 @@ footer {
 
 .multiLine span {
   display: inline;
+}
+
+/* An annotation that wraps a whole .multiLine entry: keep it an inline-block
+   so the arrow anchors to the block's box, but let it inherit the page's
+   line spacing instead of the library's tighter one. */
+.multiLine span.ann-wrap {
+  display: inline-block;
+  vertical-align: top;
+  line-height: inherit;
 }
 
 .social-links {
@@ -255,6 +186,22 @@ footer {
   }
 }
 
+/* Annotation labels wrap inside a 150px box, and the library leaves their
+   text at the page's left alignment. Centre it so a two-line note reads as a
+   balanced block under its arrow. */
+.ann::after {
+  text-align: center;
+}
+
+/* An annotation is anchored to one spot in the one-line layout and to a
+   different spot once .multiLine stacks, so each is shown only at the width
+   its arrow was aimed for. Both switch on the same breakpoint that stacks
+   .mline below, since that media query is what breaks the line, not the
+   text itself — .multiLine is nowrap until then. */
+.ann.only-narrow {
+  display: none;
+}
+
 @media (max-width: 600px) {
 
   body {
@@ -288,5 +235,14 @@ footer {
 
   .multiLine span.mline {
     display: block;
+  }
+
+  .ann.only-wide {
+    display: none;
+  }
+
+  /* Matches the display .ann gives every annotation. */
+  .ann.only-narrow {
+    display: inline-block;
   }
 }

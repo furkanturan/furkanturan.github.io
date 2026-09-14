@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furkan Turan</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/syabro/neat-annotations/neat-annotations.css">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -16,32 +18,37 @@
     <div class="hero">
 
       <h1>
-        <span class="t-matrix" data-variant="pulse"></span>
         Furkan Turan
       </h1>
 
-      <p class="wh multiLine">
-        <span class="mline">Co-founder</span>
-        <span class="mline"><span class="ch-am">&</span> Hardware Designer</a></span>
-        <span class="mline"><span class="ch-at">@</span> <a href="https://belfortlabs.com">Belfort</a></span>
+      <p class="wh">PhD Electrical Engineer
+        <span class="ann ann-sw ann-amber ann-no-mark" style="--ann-target-gap: 1em" data-note="digital hardware designer"></span>
       </p>
 
-      <p class="wh">PhD Electrical Engineer</p>
+      <p class="wh multiLine">
+        <span class="mline">Co-founder</span>
+        <span class="mline"><span class="ch-am">&</span> Hardware Engineer</a>
+          <!-- <span class="ann ann-sw ann-amber ann-no-mark only-narrow" style="--ann-target-gap: 1em" data-note="hooray!"></span>-->
+          <!-- <span class="ann ann-sw ann-amber ann-no-mark" style="--ann-target-gap: 1em" data-note="a coder too!"></span> -->
+        </span>
+        <span class="mline"><span class="ch-at">@</span> <a href="https://belfortlabs.com">Belfort</a>
+          <!-- <span class="ann ann-sw ann-amber ann-no-mark only-wide" data-note="hooray!"></span> -->
+        </span>
+      </p>
+
 
       <div class="spacer"></div>
 
       <p class="gr ni">
-        I am an experienced engineer specialized in FPGA-accelerated computing,
-        with hands-on expertise across a range of platforms from SoCs to
-        datacenters. My work focuses on developing secure applications,
-        implementing cryptographic algorithms in hardware, and leveraging trusted
-        computing solutions.
+        I work across hardware-accelerated computing, from SoCs to datacenters.
+        I develop secure applications, implement cryptographic algorithms in hardware, and work with trusted computing
+        technologies.
       </p>
 
       <div class="spacer"></div>
 
       <p class="social-links">
-        <a href="https://x.com/furkanturan" target="_blank" class="social notLast">X-Twitter</a>
+        <a href="https://x.com/furkanturan" target="_blank" class="social notLast">X</a>
         <a href="https://linkedin.com/in/turanfurkan/" target="_blank" class="social notLast">LinkedIn</a>
         <a href="https://instagram.com/furkturan" target="_blank" class="social notLast">Instagram</a>
         <a href="https://github.com/furkanturan" target="_blank" class="social notLast">GitHub</a>
@@ -56,17 +63,21 @@
 
       <section>
         <h2>
-          <span class="t-matrix" data-variant="static"></span>
-          Work Experience
+          Work
         </h2>
 
         <p class="wh multiLine">
-          <span class="mline">Hardware Designer</span>
-          <span class="mline"><span class="ch-at">@</span> <a href="https://belfortlabs.com">Belfort</a></span>
-          <span class="mline"><span class="ch-sl">/</span> 2025 - <span class="progress"></span></span>
+          <span class="ann ann-sw ann-amber ann-no-mark ann-wrap" style="--ann-target-gap: 0.4em"
+            data-note="we build for future!">
+            <span class="mline">Hardware Engineer</span>
+            <span class="mline"><span class="ch-at">@</span> <a href="https://belfortlabs.com">Belfort</a></span>
+            <span class="mline"><span class="ch-sl">/</span> 2025 - <span class="progress"></span></span>
+          </span>
         </p>
 
-        <p class="lg">Hardware Acceleration for FHE</p>
+        <p class="lg">Designing architectures for computing on encrypted data
+
+        </p>
 
         <p class="wh multiLine">
           <span class="mline">Researcher</span>
@@ -78,7 +89,7 @@
         <p class="lg">FPGA-Accelerated Homomorphic Computation in Cloud</p>
         <ul class="lg">
           <li>Explored design-space for massively parallel hardware computation</li>
-          <li>High-performance HW/SW interfaces for low-latency ciphertext transfers </li>
+          <li>High-performance HW/SW interfaces for low-latency ciphertext transfers</li>
         </ul>
 
         <p class="lg">Security Analysis of FPGA-Accelerated Computing</p>
@@ -125,7 +136,6 @@
 
       <section>
         <h2>
-          <span class="t-matrix" data-variant="static"></span>
           Education
         </h2>
 
@@ -172,7 +182,8 @@
       <div class="spacer"></div>
 
       <footer>
-        2026 - furkanturan.com
+        </br>
+        <span class="ann ann-se ann-amber ann-no-mark" data-note="mail /at/"></span>furkanturan.com - 2026
       </footer>
 
     </div>
@@ -182,53 +193,6 @@
   <script>
     // Center the hero content in the first screen without reserving a full
     // viewport of space, so the rest follows immediately below it.
-    // Fill each matrix loader with sixteen dots, handing every dot a delay
-    // into the shared colour-pulse cycle. The variant is just a delay table:
-    // scan sweeps column by column, twinkle scatters, orbit walks the ring
-    // around a steady centre, pulse lights the centre before the border,
-    // and static holds every dot at rest.
-    (function () {
-      function delays(variant, cycle) {
-        var d = [], i;
-
-        if (variant === 'static') {
-          for (i = 0; i < 16; i++) d[i] = null;
-        } else if (variant === 'twinkle') {
-          var order = [7, 2, 11, 5, 14, 9, 0, 12, 3, 15, 6, 10, 13, 1, 8, 4];
-          for (i = 0; i < 16; i++) d[order[i]] = i * cycle / 16;
-        } else if (variant === 'orbit') {
-          var ring = [1, 2, 7, 11, 14, 13, 8, 4];
-          for (i = 0; i < 16; i++) d[i] = null;
-          for (i = 0; i < ring.length; i++) d[ring[i]] = i * cycle / 8;
-        } else if (variant === 'pulse') {
-          for (i = 0; i < 16; i++) {
-            var inner = i === 5 || i === 6 || i === 9 || i === 10;
-            d[i] = inner ? 0 : cycle * 0.16;
-          }
-        } else {
-          for (i = 0; i < 16; i++) d[i] = (i % 4) * cycle / 10;
-        }
-
-        return d;
-      }
-
-      var loaders = document.querySelectorAll('.t-matrix');
-
-      for (var n = 0; n < loaders.length; n++) {
-        var el = loaders[n];
-        var cycle = parseFloat(
-          getComputedStyle(el).getPropertyValue('--matrix-cycle')) || 1200;
-        var table = delays(el.dataset.variant, cycle);
-
-        for (var i = 0; i < 16; i++) {
-          var dot = document.createElement('i');
-          if (table[i] === null) dot.className = 'is-hold';
-          else dot.style.setProperty('--d', String(table[i]));
-          el.appendChild(dot);
-        }
-      }
-    })();
-
     (function () {
       var hero = document.querySelector('.hero');
 
