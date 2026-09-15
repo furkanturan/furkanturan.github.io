@@ -229,6 +229,12 @@ footer {
     font-size: 0.9em;
   }
 
+  /* neat-annotations sizes labels in rem (0.95rem), so they ignore the body
+     step-down above. Scale them by the same 0.9 factor. */
+  .ann::after {
+    font-size: 0.855rem;
+  }
+
   .social-links {
     display: block;
     white-space: normal;
