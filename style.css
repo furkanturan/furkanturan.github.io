@@ -39,12 +39,31 @@ h2 {
   font-weight: bold;
   margin: 1em 0 0.5em 0;
   text-indent: 0;
+  text-shadow: 0px 0px 1px #ffffff63;
 }
 
 h1 {
   color: #FF5B04;
-  margin-top: 2em ;
+  margin-top: 2em;
   padding-bottom: 1em;
+  animation: glow 6s ease-in-out infinite;
+}
+
+/* starts glowed, 4s fade down (0% -> 66.67%), 2s glow back up (66.67% -> 100%) */
+@keyframes glow {
+
+  0%,
+  100% {
+    text-shadow:
+      0px 0px 2px #000,
+      0px 0px 10px rgba(255, 91, 4, 1);
+  }
+
+  66.67% {
+    text-shadow:
+      0px 0px 1px #000,
+      0px 0px 5px rgba(255, 91, 4, 0.2);
+  }
 }
 
 h2 {
@@ -102,7 +121,9 @@ p {
   color: #bcbcbc77;
 }
 
-.ch-at, .ch-sl, .ch-am {
+.ch-at,
+.ch-sl,
+.ch-am {
   color: #bcbcbc77;
 }
 
