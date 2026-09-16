@@ -207,18 +207,10 @@ footer {
   }
 }
 
-/* Annotation labels wrap inside a 150px box, and the library leaves their
-   text at the page's left alignment. Centre it so a two-line note reads as a
-   balanced block under its arrow. */
 .ann::after {
   text-align: center;
 }
 
-/* An annotation is anchored to one spot in the one-line layout and to a
-   different spot once .multiLine stacks, so each is shown only at the width
-   its arrow was aimed for. Both switch on the same breakpoint that stacks
-   .mline below, since that media query is what breaks the line, not the
-   text itself — .multiLine is nowrap until then. */
 .ann.only-narrow {
   display: none;
 }
@@ -229,8 +221,6 @@ footer {
     font-size: 0.9em;
   }
 
-  /* neat-annotations sizes labels in rem (0.95rem), so they ignore the body
-     step-down above. Scale them by the same 0.9 factor. */
   .ann::after {
     font-size: 0.855rem;
   }
@@ -268,7 +258,6 @@ footer {
     display: none;
   }
 
-  /* Matches the display .ann gives every annotation. */
   .ann.only-narrow {
     display: inline-block;
   }
