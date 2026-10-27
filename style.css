@@ -1,21 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
 
-body {
-  background-color: #16232A;
-  color: #E4EEF0;
+/* Character grid: every spacing on the page is a whole number of cells, where
+   a cell is one character wide (--cw) and one line tall (--lh). The grid is
+   drawn on the root and centred; <main> is centred too and is an even number
+   of columns wide, so its edges (and every glyph inside it) land on grid lines. */
+html {
+  --cw: calc(1ch + 0.3px);
+  --lh: 1.5em;
+  --grid: rgba(100, 112, 115, 0.05);
+
   font-family: 'Google Sans Code', monospace;
   font-size: 1em;
-  line-height: 1.5;
+  line-height: var(--lh);
   letter-spacing: 0.3px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  background-color: #16232A;
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: var(--cw) var(--lh);
+  background-position: calc(50% + var(--cw) / 2) 0;
+}
+
+/* Snap the cell to whole pixels. Fractional cells drift: WebKit rounds each
+   background tile to device pixels, so the grid slides off the text further
+   down the page. The letter-spacing then pads each glyph to exactly one cell. */
+@supports (width: round(1px, 1px)) {
+  html {
+    --cw: round(calc(1ch + 0.3px), 1px);
+    --lh: round(1.5em, 1px);
+    letter-spacing: calc(var(--cw) - 1ch);
+  }
+}
+
+body {
+  color: #E4EEF0;
   margin: 0;
-  padding: 1em;
+  padding: var(--lh) calc(2 * var(--cw));
   display: flex;
   justify-content: center;
 }
 
 main {
-  max-width: 80ch;
   width: 100%;
+  width: round(down, 100%, calc(2 * var(--cw)));
+  max-width: calc(80 * var(--cw));
   padding-top: var(--hero-offset, 0px);
 }
 
@@ -37,15 +68,14 @@ h1,
 h2 {
   font-size: 1em;
   font-weight: bold;
-  margin: 1em 0 0.5em 0;
+  margin: var(--lh) 0 0 0;
   text-indent: 0;
   text-shadow: 0px 0px 1px #ffffff63;
 }
 
 h1 {
   color: #FF5B04;
-  margin-top: 2em;
-  padding-bottom: 1em;
+  padding-bottom: var(--lh);
   animation: glow 6s ease-in-out infinite;
 }
 
@@ -68,21 +98,20 @@ h1 {
 
 h2 {
   color: #E4EEF0;
-  margin: 0.75em 0 0.5em 0;
-  padding-bottom: 2.5em;
+  padding-bottom: var(--lh);
 }
 
 ul {
   list-style: none;
-  margin: 1em 0;
-  /* padding-left: 3ch; */
+  margin: var(--lh) 0;
+  padding: 0;
   text-indent: 0;
 }
 
 ul li {
   position: relative;
-  margin: 0.25em 0;
-  padding-left: 2ch;
+  margin: 0;
+  padding-left: calc(2 * var(--cw));
 }
 
 ul li::before {
@@ -93,7 +122,7 @@ ul li::before {
 }
 
 p {
-  margin: 1em 0;
+  margin: var(--lh) 0;
 }
 
 .wh {
@@ -102,19 +131,17 @@ p {
 
 .gr {
   color: #bcbcbcbb;
-  /* padding-left: 2ch; */
-  padding-right: 3ch;
+  padding-right: calc(3 * var(--cw));
 }
 
 .lg {
   color: #bcbcbc77;
-  padding-left: 2ch;
-  padding-right: 3ch;
+  padding-left: calc(2 * var(--cw));
+  padding-right: calc(3 * var(--cw));
 }
 
 .ni {
-  /* padding-left: 3ch; */
-  padding-right: 3ch;
+  padding-right: calc(3 * var(--cw));
 }
 
 .lg li::before {
@@ -127,27 +154,30 @@ p {
   color: #bcbcbc77;
 }
 
+/* The negative bottom margin cancels the border's 1px so rows stay aligned. */
 .divider {
   border-top: 1px solid #555;
-  margin: 5em 0 0 0;
+  margin: calc(3 * var(--lh)) 0 -1px 0;
 }
 
 .spacer {
-  padding-top: 0.5em;
+  padding-top: var(--lh);
   display: block;
+}
+
+.spacer + p {
+  margin-top: 0;
 }
 
 footer {
   text-align: right;
-  margin-top: 1em;
-  font-size: 1em;
+  margin-top: 0;
   color: #888;
-  padding: 0 3ch;
+  padding: 0 calc(3 * var(--cw));
 }
 
 .multiLine {
   color: #ffffffe9;
-  max-width: 80ch;
   white-space: nowrap;
 }
 
@@ -217,12 +247,12 @@ footer {
 
 @media (max-width: 600px) {
 
-  body {
+  html {
     font-size: 0.9em;
   }
 
   .ann::after {
-    font-size: 0.855rem;
+    font-size: 0.95rem;
   }
 
   .social-links {
@@ -232,7 +262,6 @@ footer {
 
   .social-links a {
     display: block;
-    margin-bottom: 0.2em;
   }
 
   .social-links a::before {
