@@ -7,7 +7,7 @@
   <title>Furkan Turan</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/syabro/neat-annotations/neat-annotations.css">
   <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261027c" />
+  <link rel="stylesheet" href="style.css?v=20261105k" />
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
@@ -172,8 +172,7 @@
         </p>
       </section>
 
-      <div class="spacer"></div>
-      <div class="spacer"></div>
+      <div class="divider"></div>
 
       <footer>
         </br>
@@ -184,26 +183,6 @@
 
   </main>
 
-  <script>
-    // Center the hero content in the first screen without reserving a full
-    // viewport of space, so the rest follows immediately below it.
-    (function () {
-      var hero = document.querySelector('.hero');
-
-      function place() {
-        var pad = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-        var free = window.innerHeight - 2 * pad - hero.offsetHeight;
-        // Snap to whole rows so the text stays on the character grid.
-        var lh = parseFloat(getComputedStyle(document.body).lineHeight) || 24;
-        var offset = Math.round(Math.max(0, free / 8) / lh) * lh;
-        document.documentElement.style.setProperty('--hero-offset', offset + 'px');
-      }
-
-      place();
-      window.addEventListener('resize', place);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
-    })();
-  </script>
 
 </body>
 

@@ -7,7 +7,7 @@
 html {
   --cw: calc(1ch + 0.3px);
   --lh: 1.5em;
-  --grid: rgba(100, 112, 115, 0.05);
+  --grid: rgba(100, 112, 115, 0.1);
 
   font-family: 'Google Sans Code', monospace;
   font-size: 1em;
@@ -17,11 +17,33 @@ html {
   text-size-adjust: 100%;
 
   background-color: #16232A;
-  background-image:
-    linear-gradient(to right, var(--grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  position: relative;
+  min-height: 100%;
+}
+
+/* Grid lines, dotted: each set of lines is drawn solid on its own layer, then
+   masked with stripes running along the lines (1px dot, 2px gap). */
+html::before,
+html::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-size: var(--cw) var(--lh);
   background-position: calc(50% + var(--cw) / 2) 0;
+}
+
+html::before {
+  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px);
+  -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 1px, transparent 1px 3px);
+  mask-image: repeating-linear-gradient(to bottom, #000 0 1px, transparent 1px 3px);
+}
+
+html::after {
+  background-image: linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  -webkit-mask-image: repeating-linear-gradient(to right, #000 0 1px, transparent 1px 3px);
+  mask-image: repeating-linear-gradient(to right, #000 0 1px, transparent 1px 3px);
 }
 
 /* Snap the cell to whole pixels. Fractional cells drift: WebKit rounds each
@@ -36,18 +58,43 @@ html {
 }
 
 body {
+  --rule: #4d5b61;
+
   color: #E4EEF0;
   margin: 0;
-  padding: var(--lh) calc(2 * var(--cw));
+  padding: var(--lh) calc(4 * var(--cw));
+  min-height: 100vh;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
 }
 
 main {
+  position: relative;
   width: 100%;
   width: round(down, 100%, calc(2 * var(--cw)));
   max-width: calc(80 * var(--cw));
-  padding-top: var(--hero-offset, 0px);
+}
+
+/* Vertical rules three columns outside the content, running the full height
+   of the page (through the body's top and bottom padding). */
+main::before,
+main::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--lh));
+  bottom: calc(-1 * var(--lh));
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+}
+
+main::before {
+  left: calc(-3 * var(--cw));
+}
+
+main::after {
+  right: calc(-3 * var(--cw) - 1px);
 }
 
 a {
@@ -73,7 +120,9 @@ h2 {
   text-shadow: 0px 0px 1px #ffffff63;
 }
 
+/* Body padding (1 row) + this margin (2 rows) puts the name 3 rows down. */
 h1 {
+  margin-top: calc(2 * var(--lh));
   color: #FF5B04;
   padding-bottom: var(--lh);
   text-shadow: none;
@@ -137,10 +186,14 @@ p {
   color: #bcbcbc77;
 }
 
-/* The negative bottom margin cancels the border's 1px so rows stay aligned. */
+/* Two empty rows above and below. The bottom margin is 1px short to absorb
+   the border's 1px, so rows stay aligned.
+   The dotted border image is outset to bleed the rule out to both window
+   edges; outsets don't add scrollable overflow, so there's no sideways scroll. */
 .divider {
-  border-top: 1px solid #555;
-  margin: calc(3 * var(--lh)) 0 -1px 0;
+  border-top: 1px solid var(--rule);
+  border-image: repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 3px) 1 / 1px 0 0 / 0 100vmax;
+  margin: calc(2 * var(--lh)) 0 calc(2 * var(--lh) - 1px) 0;
 }
 
 .spacer {
@@ -232,6 +285,17 @@ footer {
 
   html {
     font-size: 0.9em;
+  }
+
+  /* No room for the side rules: drop them and keep a 2-column gutter. */
+  body {
+    padding-left: calc(2 * var(--cw));
+    padding-right: calc(2 * var(--cw));
+  }
+
+  main::before,
+  main::after {
+    display: none;
   }
 
   .ann::after {
