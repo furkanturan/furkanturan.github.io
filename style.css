@@ -1,4 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+/* Ioskeley Mono (https://github.com/ahatem/IoskeleyMono), SIL OFL 1.1 — see fonts/IoskeleyMono-LICENSE.txt */
+@font-face {
+  font-family: 'Ioskeley Mono';
+  src: url('fonts/IoskeleyMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ioskeley Mono';
+  src: url('fonts/IoskeleyMono-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ioskeley Mono';
+  src: url('fonts/IoskeleyMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Character grid: every spacing on the page is a whole number of cells, where
    a cell is one character wide (--cw) and one line tall (--lh). The grid is
@@ -9,7 +32,7 @@ html {
   --lh: 1.5em;
   --grid: rgba(100, 112, 115, 0.1);
 
-  font-family: 'Google Sans Code', monospace;
+  font-family: 'Ioskeley Mono', monospace;
   font-size: 1em;
   line-height: var(--lh);
   letter-spacing: 0.3px;
