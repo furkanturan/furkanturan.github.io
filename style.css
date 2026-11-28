@@ -30,7 +30,7 @@
 html {
   --cw: calc(1ch + 0.3px);
   --lh: 1.5em;
-  --grid: rgba(100, 112, 115, 0.1);
+  --grid: rgba(140, 155, 160, 0.15);
 
   font-family: 'Ioskeley Mono', monospace;
   font-size: 1em;
